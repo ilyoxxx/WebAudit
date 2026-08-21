@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>webaudit — scanner sécurité &amp; RGPD</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>webaudit</h1>
+    <p class="tagline">Scanner d'audit sécurité &amp; RGPD, à règles modulaires.</p>
+  </header>
+
+  <main>
+    <form id="scan-form">
+      <input
+        type="text"
+        id="url-input"
+        placeholder="exemple.fr ou https://exemple.fr"
+        autocomplete="off"
+        required
+      />
+      <button type="submit">Scanner</button>
+    </form>
+
+    <div id="status" class="status" hidden></div>
+
+    <section id="report" class="report" hidden>
+      <div class="grade-header">
+        <div id="grade-badge" class="grade-badge">?</div>
+        <div>
+          <div id="report-url" class="report-url"></div>
+          <div id="report-score" class="report-score"></div>
+        </div>
+      </div>
+
+      <div id="results-by-category"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      Projet open source — les règles vivent dans <code>/src/rules</code>.
+      Contribuer : voir <a href="https://github.com/yourname/webaudit/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>.
+    </p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

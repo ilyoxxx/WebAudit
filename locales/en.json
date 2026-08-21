@@ -1,0 +1,28 @@
+{
+  "engine.rule_crashed": "This rule hit an internal error during analysis.",
+
+  "security.hsts.missing": "The site does not send a Strict-Transport-Security (HSTS) header.",
+  "security.hsts.short_max_age": "HSTS is present but its max-age is too short.",
+  "security.hsts.ok": "HSTS is correctly configured.",
+  "security.hsts.remediation": "Add 'Strict-Transport-Security: max-age=31536000; includeSubDomains' to your HTTP responses.",
+
+  "security.xfo.missing": "No clickjacking protection found (neither X-Frame-Options nor CSP frame-ancestors).",
+  "security.xfo.weak_value": "X-Frame-Options has an unusual value.",
+  "security.xfo.covered_by_csp": "Clickjacking protection is provided via Content-Security-Policy.",
+  "security.xfo.ok": "X-Frame-Options is correctly configured.",
+  "security.xfo.remediation": "Add 'X-Frame-Options: SAMEORIGIN' or a CSP 'frame-ancestors' directive.",
+
+  "rgpd.cookie_consent.tracking_without_cmp": "Analytics/advertising cookies are set with no consent banner detected.",
+  "rgpd.cookie_consent.cmp_present_needs_manual_check": "A consent management tool was detected, but a manual check of the consent flow is recommended.",
+  "rgpd.cookie_consent.no_tracking_detected": "No non-essential tracking cookie detected before consent.",
+  "rgpd.cookie_consent.remediation": "Defer non-essential cookies until explicit user consent (see CNIL guidelines).",
+
+  "rgpd.mentions_legales.found": "A legal notice page was detected.",
+  "rgpd.mentions_legales.missing": "No legal notice page detected.",
+  "rgpd.mentions_legales.remediation": "Add a legal notice page linked from the footer, as required by French law (LCEN art. 6).",
+
+  "perf.compression.missing": "HTTP responses are not compressed.",
+  "perf.compression.unrecognized": "A non-standard compression encoding is used.",
+  "perf.compression.ok": "HTTP compression is enabled.",
+  "perf.compression.remediation": "Enable gzip or brotli compression server-side (e.g. Express 'compression' middleware)."
+}

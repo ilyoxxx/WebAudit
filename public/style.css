@@ -1,0 +1,172 @@
+:root {
+  --bg: #0f1115;
+  --panel: #171a21;
+  --border: #2a2e38;
+  --text: #e6e8ec;
+  --text-dim: #9aa1ac;
+  --accent: #5b8def;
+  --pass: #3fb950;
+  --warn: #d4a72c;
+  --fail: #f85149;
+  --na: #6e7681;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+header {
+  padding: 2.5rem 1rem 1rem;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  letter-spacing: -0.02em;
+}
+
+.tagline {
+  color: var(--text-dim);
+  margin-top: 0.25rem;
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+#scan-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+#url-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  background: var(--accent);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover { opacity: 0.9; }
+button:disabled { opacity: 0.5; cursor: wait; }
+
+.status {
+  margin-top: 1rem;
+  color: var(--text-dim);
+}
+
+.report {
+  margin-top: 2rem;
+}
+
+.grade-header {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.grade-badge {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.grade-badge[data-grade="A"] { background: var(--pass); }
+.grade-badge[data-grade="B"] { background: #4caf50; }
+.grade-badge[data-grade="C"] { background: var(--warn); }
+.grade-badge[data-grade="D"] { background: #e08a2c; }
+.grade-badge[data-grade="E"] { background: #e0602c; }
+.grade-badge[data-grade="F"] { background: var(--fail); }
+
+.report-url { font-weight: 600; word-break: break-all; }
+.report-score { color: var(--text-dim); }
+
+.category-block {
+  margin-top: 1.5rem;
+}
+
+.category-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  margin-bottom: 0.5rem;
+}
+
+.rule-row {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  background: var(--panel);
+}
+
+.rule-status {
+  flex-shrink: 0;
+  width: 1.5rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+.rule-status[data-status="pass"] { color: var(--pass); }
+.rule-status[data-status="warn"] { color: var(--warn); }
+.rule-status[data-status="fail"] { color: var(--fail); }
+.rule-status[data-status="na"] { color: var(--na); }
+
+.rule-body { flex: 1; }
+
+.rule-message { font-size: 0.95rem; }
+
+.rule-remediation {
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.rule-docs {
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+}
+
+.rule-docs a { color: var(--accent); }
+
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}

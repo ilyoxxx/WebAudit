@@ -1,0 +1,28 @@
+{
+  "engine.rule_crashed": "Cette règle a rencontré une erreur interne pendant l'analyse.",
+
+  "security.hsts.missing": "Le site n'envoie pas d'en-tête Strict-Transport-Security (HSTS).",
+  "security.hsts.short_max_age": "HSTS est présent mais sa durée (max-age) est trop courte.",
+  "security.hsts.ok": "HSTS est correctement configuré.",
+  "security.hsts.remediation": "Ajoutez l'en-tête 'Strict-Transport-Security: max-age=31536000; includeSubDomains' à vos réponses HTTP.",
+
+  "security.xfo.missing": "Aucune protection contre le clickjacking (ni X-Frame-Options, ni frame-ancestors en CSP).",
+  "security.xfo.weak_value": "X-Frame-Options a une valeur inhabituelle.",
+  "security.xfo.covered_by_csp": "La protection contre le clickjacking est assurée via Content-Security-Policy.",
+  "security.xfo.ok": "X-Frame-Options est correctement configuré.",
+  "security.xfo.remediation": "Ajoutez 'X-Frame-Options: SAMEORIGIN' ou une directive CSP 'frame-ancestors'.",
+
+  "rgpd.cookie_consent.tracking_without_cmp": "Des cookies de mesure d'audience/publicité sont posés sans bandeau de consentement détecté.",
+  "rgpd.cookie_consent.cmp_present_needs_manual_check": "Un outil de gestion du consentement est détecté, mais une vérification manuelle du parcours de consentement est recommandée.",
+  "rgpd.cookie_consent.no_tracking_detected": "Aucun cookie de tracking non-essentiel détecté avant consentement.",
+  "rgpd.cookie_consent.remediation": "Différez le dépôt des cookies non-essentiels jusqu'au consentement explicite de l'utilisateur (voir recommandations CNIL).",
+
+  "rgpd.mentions_legales.found": "Une page de mentions légales a été détectée.",
+  "rgpd.mentions_legales.missing": "Aucune page de mentions légales détectée.",
+  "rgpd.mentions_legales.remediation": "Ajoutez une page 'Mentions légales' accessible depuis le pied de page, conforme à l'article 6 de la LCEN.",
+
+  "perf.compression.missing": "Les réponses HTTP ne sont pas compressées.",
+  "perf.compression.unrecognized": "Un encodage de compression non standard est utilisé.",
+  "perf.compression.ok": "La compression HTTP est activée.",
+  "perf.compression.remediation": "Activez la compression gzip ou brotli côté serveur (ex: middleware 'compression' pour Express)."
+}
