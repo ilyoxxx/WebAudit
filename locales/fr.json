@@ -29,5 +29,11 @@
   "perf.compression.missing": "Les réponses HTTP ne sont pas compressées.",
   "perf.compression.unrecognized": "Un encodage de compression non standard est utilisé.",
   "perf.compression.ok": "La compression HTTP est activée.",
-  "perf.compression.remediation": "Activez la compression gzip ou brotli côté serveur (ex: middleware 'compression' pour Express)."
+  "perf.compression.remediation": "Activez la compression gzip ou brotli côté serveur (ex: middleware 'compression' pour Express).",
+
+  "security.tls_version.unavailable": "La version TLS n'a pas pu être déterminée.",
+"security.tls_version.ok": "Le site utilise TLS 1.3, la version recommandée.",
+"security.tls_version.tls12_only": "Le site utilise TLS 1.2, fonctionnel mais TLS 1.3 est recommandé.",
+"security.tls_version.outdated": "Le site utilise une version de TLS obsolète et non sécurisée.",
+"security.tls_version.remediation": "Configurez votre serveur pour privilégier TLS 1.3 et désactiver les versions antérieures à TLS 1.2."
 }
