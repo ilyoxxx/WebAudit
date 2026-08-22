@@ -1,5 +1,3 @@
-import { request } from 'undici';
-
 export interface HttpCollectResult {
   status: number;
   headers: Record<string, string>;
@@ -10,40 +8,66 @@ export interface HttpCollectResult {
 }
 
 const TIMEOUT_MS = 8000;
-const MAX_BODY_BYTES = 2_000_000; // 2MB, on n'a pas besoin de plus pour parser le head/body
+const MAX_BODY_BYTES = 2_000_000;
 
+/**
+ * Utilise le fetch global de Node (18+), qui suit les redirections par défaut.
+ * On évite volontairement l'API bas niveau d'undici (request/Client) dont les
+ * options ont changé de forme entre versions majeures.
+ */
 export async function collectHttp(url: string): Promise<HttpCollectResult> {
   const start = Date.now();
 
-  const res = await request(url, {
-    method: 'GET',
-    maxRedirections: 5,
-    headersTimeout: TIMEOUT_MS,
-    bodyTimeout: TIMEOUT_MS,
-    headers: {
-      'user-agent': 'webaudit-bot/0.1 (+https://github.com/yourname/webaudit)',
-    },
-  });
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), TIMEOUT_MS);
 
-  const chunks: Buffer[] = [];
-  let total = 0;
-  for await (const chunk of res.body) {
-    total += (chunk as Buffer).length;
-    if (total > MAX_BODY_BYTES) break;
-    chunks.push(chunk as Buffer);
+  let res: Response;
+  try {
+    res = await fetch(url, {
+      method: 'GET',
+      redirect: 'follow',
+      signal: controller.signal,
+      headers: {
+        'user-agent': 'webaudit-bot/0.1 (+https://github.com/ilyoxxx/webaudit)',
+      },
+    });
+  } finally {
+    clearTimeout(timeoutId);
   }
+
+  const reader = res.body?.getReader();
+  const chunks: Uint8Array[] = [];
+  let total = 0;
+
+  if (reader) {
+    // eslint-disable-next-line no-constant-condition
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      if (value) {
+        total += value.length;
+        if (total > MAX_BODY_BYTES) {
+          await reader.cancel();
+          break;
+        }
+        chunks.push(value);
+      }
+    }
+  }
+
+  const bodyHtml = Buffer.concat(chunks.map((c) => Buffer.from(c))).toString('utf-8');
 
   const headers: Record<string, string> = {};
-  for (const [key, value] of Object.entries(res.headers)) {
-    headers[key.toLowerCase()] = Array.isArray(value) ? value.join(', ') : String(value ?? '');
-  }
+  res.headers.forEach((value, key) => {
+    headers[key.toLowerCase()] = value;
+  });
 
   return {
-    status: res.statusCode,
+    status: res.status,
     headers,
-    bodyHtml: Buffer.concat(chunks).toString('utf-8'),
-    redirected: res.context ? true : false,
-    finalUrl: (res as unknown as { url?: string }).url ?? url,
+    bodyHtml,
+    redirected: res.redirected,
+    finalUrl: res.url || url,
     timingMs: Date.now() - start,
   };
 }
