@@ -29,5 +29,9 @@
   "perf.compression.missing": "Les réponses HTTP ne sont pas compressées.",
   "perf.compression.unrecognized": "Un encodage de compression non standard est utilisé.",
   "perf.compression.ok": "La compression HTTP est activée.",
-  "perf.compression.remediation": "Activez la compression gzip ou brotli côté serveur (ex: middleware 'compression' pour Express)."
+  "perf.compression.remediation": "Activez la compression gzip ou brotli côté serveur (ex: middleware 'compression' pour Express).",
+
+  "security.xcto.missing_or_invalid": "L'en-tête X-Content-Type-Options est absent ou différent de 'nosniff'.",
+"security.xcto.ok": "X-Content-Type-Options est correctement configuré sur 'nosniff'.",
+"security.xcto.remediation": "Ajoutez l'en-tête 'X-Content-Type-Options: nosniff' à vos réponses HTTP."
 }
