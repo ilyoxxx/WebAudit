@@ -11,6 +11,13 @@
 "security.csp.ok": "Content-Security-Policy est correctement configuré.",
 "security.csp.remediation": "Définissez une CSP stricte, ex: \"default-src 'self'\", et évitez 'unsafe-inline'.",
 
+"security.permissions_policy.missing": "Le site n'envoie pas d'en-tête Permissions-Policy.",
+"security.permissions_policy.no_sensitive_feature_restricted": "Permissions-Policy est présent mais ne restreint aucune fonctionnalité sensible (caméra, micro, géolocalisation).",
+"security.permissions_policy.ok": "Permissions-Policy restreint correctement les fonctionnalités sensibles.",
+"security.permissions_policy.remediation": "Ajoutez un en-tête Permissions-Policy limitant camera, microphone et geolocation, ex: \"camera=(), microphone=(), geolocation=(self)\".",
+
+
+
   "security.xfo.missing": "Aucune protection contre le clickjacking (ni X-Frame-Options, ni frame-ancestors en CSP).",
   "security.xfo.weak_value": "X-Frame-Options a une valeur inhabituelle.",
   "security.xfo.covered_by_csp": "La protection contre le clickjacking est assurée via Content-Security-Policy.",
