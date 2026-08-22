@@ -6,6 +6,11 @@
   "security.hsts.ok": "HSTS est correctement configuré.",
   "security.hsts.remediation": "Ajoutez l'en-tête 'Strict-Transport-Security: max-age=31536000; includeSubDomains' à vos réponses HTTP.",
 
+  "security.csp.missing": "Le site n'envoie pas d'en-tête Content-Security-Policy.",
+"security.csp.unsafe_inline": "CSP est présent mais autorise 'unsafe-inline', ce qui réduit fortement sa protection.",
+"security.csp.ok": "Content-Security-Policy est correctement configuré.",
+"security.csp.remediation": "Définissez une CSP stricte, ex: \"default-src 'self'\", et évitez 'unsafe-inline'.",
+
   "security.xfo.missing": "Aucune protection contre le clickjacking (ni X-Frame-Options, ni frame-ancestors en CSP).",
   "security.xfo.weak_value": "X-Frame-Options a une valeur inhabituelle.",
   "security.xfo.covered_by_csp": "La protection contre le clickjacking est assurée via Content-Security-Policy.",
