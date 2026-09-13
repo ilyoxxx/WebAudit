@@ -31,7 +31,7 @@ Ouvre `http://localhost:3000`, tape une URL, regarde le rapport.
   /server        server.ts (Express + TS), route /api/scan
   /collectors    http.ts, tls.ts, dns.ts, cookies.ts
   /rules         un fichier = une règle
-    /security    hsts.ts, x-frame-options.ts...
+    /security    hsts.ts, x-frame-options.ts, spf-record.ts...
     /rgpd        cookie-consent.ts, mentions-legales.ts...
     /perf        compression.ts...
   /engine        runner.ts (charge et exécute les règles, calcule le score)
@@ -68,7 +68,7 @@ Pas de Puppeteer / Chrome headless. Ça alourdit l'installation, casse la CI sur
 
 ## Statut du projet
 
-Scan HTTP/TLS/DNS/cookies/robots.txt opérationnel. 5 règles de démonstration livrées (`security/hsts`, `security/x-frame-options`, `rgpd/cookie-consent`, `rgpd/mentions-legales`, `perf/compression`). 25 règles supplémentaires listées comme [`good first issue`](../../issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) — voir `.github/ISSUES_SEED.md`.
+Scan HTTP/TLS/DNS/cookies/robots.txt opérationnel. 6 règles de démonstration livrées (`security/hsts`, `security/x-frame-options`, `security/spf-record`, `rgpd/cookie-consent`, `rgpd/mentions-legales`, `perf/compression`). 25 règles supplémentaires listées comme [`good first issue`](../../issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) — voir `.github/ISSUES_SEED.md`.
 
 ## Licence
 
