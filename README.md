@@ -4,8 +4,7 @@
 
 <!-- TODO avant publication : remplacer par un GIF réel du scan (asciinema→gif ou screen record, 10-15s, montre l'URL tapée + le rapport qui s'affiche) -->
 ![démo webaudit](docs/demo.gif)
-
-**[→ Essayer la démo en ligne](https://webaudit.example.com)** · [Contribuer](CONTRIBUTING.md) · [Ouvrir une issue "good first issue"](../../issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+[Contribuer](CONTRIBUTING.md) · [Ouvrir une issue "good first issue"](../../issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
 
 ---
 
