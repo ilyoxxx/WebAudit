@@ -24,5 +24,12 @@
   "perf.compression.missing": "HTTP responses are not compressed.",
   "perf.compression.unrecognized": "A non-standard compression encoding is used.",
   "perf.compression.ok": "HTTP compression is enabled.",
-  "perf.compression.remediation": "Enable gzip or brotli compression server-side (e.g. Express 'compression' middleware)."
+  "perf.compression.remediation": "Enable gzip or brotli compression server-side (e.g. Express 'compression' middleware).",
+
+  "seo.meta_description.missing": "The page has no meta 'description' tag.",
+  "seo.meta_description.too_short": "The meta description is too short (fewer than 50 characters).",
+  "seo.meta_description.too_long": "The meta description is too long (over 160 characters); it will be truncated in search results.",
+  "seo.meta_description.ok": "The meta description has a suitable length.",
+  "seo.meta_description.no_html": "Cannot analyze the page: no HTML was collected.",
+  "seo.meta_description.remediation": "Add '<meta name=\"description\" content=\"…\">' to the <head>, with a 50-160 character summary that invites clicks."
 }
