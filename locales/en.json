@@ -1,44 +1,39 @@
 {
   "engine.rule_crashed": "This rule hit an internal error during analysis.",
-
   "seo.robots_txt_present.missing": "The site does not publish a robots.txt file.",
   "seo.robots_txt_present.ok": "A robots.txt file is available.",
   "seo.robots_txt_present.remediation": "Publish a robots.txt file at the site root to describe crawler access rules.",
-
   "security.hsts.missing": "The site does not send a Strict-Transport-Security (HSTS) header.",
   "security.hsts.short_max_age": "HSTS is present but its max-age is too short.",
   "security.hsts.ok": "HSTS is correctly configured.",
   "security.hsts.remediation": "Add 'Strict-Transport-Security: max-age=31536000; includeSubDomains' to your HTTP responses.",
-
   "security.spf_record.not_applicable": "No MX record was detected, so SPF does not apply.",
   "security.spf_record.missing": "The domain receives mail but publishes no SPF record.",
   "security.spf_record.ok": "An SPF record is published for the domain.",
   "security.spf_record.remediation": "Add a TXT SPF record beginning with 'v=spf1' to the sending domain.",
-
   "security.xfo.missing": "No clickjacking protection found (neither X-Frame-Options nor CSP frame-ancestors).",
   "security.xfo.weak_value": "X-Frame-Options has an unusual value.",
   "security.xfo.covered_by_csp": "Clickjacking protection is provided via Content-Security-Policy.",
   "security.xfo.ok": "X-Frame-Options is correctly configured.",
   "security.xfo.remediation": "Add 'X-Frame-Options: SAMEORIGIN' or a CSP 'frame-ancestors' directive.",
-
   "rgpd.cookie_consent.tracking_without_cmp": "Analytics/advertising cookies are set with no consent banner detected.",
   "rgpd.cookie_consent.cmp_present_needs_manual_check": "A consent management tool was detected, but a manual check of the consent flow is recommended.",
   "rgpd.cookie_consent.no_tracking_detected": "No non-essential tracking cookie detected before consent.",
   "rgpd.cookie_consent.remediation": "Defer non-essential cookies until explicit user consent (see CNIL guidelines).",
-
   "rgpd.mentions_legales.found": "A legal notice page was detected.",
   "rgpd.mentions_legales.missing": "No legal notice page detected.",
   "rgpd.mentions_legales.remediation": "Add a legal notice page linked from the footer, as required by French law (LCEN art. 6).",
-
   "perf.compression.missing": "HTTP responses are not compressed.",
   "perf.compression.unrecognized": "A non-standard compression encoding is used.",
   "perf.compression.ok": "HTTP compression is enabled.",
   "perf.compression.remediation": "Enable gzip or brotli compression server-side (e.g. Express 'compression' middleware).",
-
   "seo.meta_description.missing": "The page has no meta 'description' tag.",
   "seo.meta_description.too_short": "The meta description is too short (fewer than 50 characters).",
   "seo.meta_description.too_long": "The meta description is too long (over 160 characters); it will be truncated in search results.",
   "seo.meta_description.ok": "The meta description has a suitable length.",
   "seo.meta_description.no_html": "Cannot analyze the page: no HTML was collected.",
-  "seo.meta_description.remediation": "Add '<meta name=\"description\" content=\"…\">' to the <head>, with a 50-160 character summary that invites clicks."
+  "seo.meta_description.remediation": "Add '<meta name=\"description\" content=\"…\">' to the <head>, with a 50-160 character summary that invites clicks.",
+  "security.exposed_files.ok": "No exposed sensitive files detected.",
+  "security.exposed_files.found": "Sensitive files are publicly accessible (credentials, configuration...).",
+  "security.exposed_files.remediation": "Block public access to these files via server configuration (nginx/Apache) and remove any backup files from the public web root."
 }

@@ -10,16 +10,25 @@ if ! command -v gh &> /dev/null; then
   exit 1
 fi
 
+# Trim pur bash (sans xargs) : les apostrophes françaises dans le texte
+# (ex: "s'il", "n'a") font planter xargs, donc on évite complètement.
+trim() {
+  local s="$1"
+  s="${s#"${s%%[![:space:]]*}"}"
+  s="${s%"${s##*[![:space:]]}"}"
+  printf '%s' "$s"
+}
+
 count=0
 while IFS='|' read -r id category weight doc behavior; do
   # ignore lignes vides, commentaires, headers markdown
   [[ -z "$id" || "$id" =~ ^# || "$id" =~ ^Format ]] && continue
 
-  id=$(echo "$id" | xargs)
-  category=$(echo "$category" | xargs)
-  weight=$(echo "$weight" | xargs)
-  doc=$(echo "$doc" | xargs)
-  behavior=$(echo "$behavior" | xargs)
+  id=$(trim "$id")
+  category=$(trim "$category")
+  weight=$(trim "$weight")
+  doc=$(trim "$doc")
+  behavior=$(trim "$behavior")
 
   title="[rule] ${id}"
   body=$(cat <<EOF
