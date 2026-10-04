@@ -6,6 +6,11 @@
   "security.hsts.ok": "HSTS is correctly configured.",
   "security.hsts.remediation": "Add 'Strict-Transport-Security: max-age=31536000; includeSubDomains' to your HTTP responses.",
 
+  "security.spf_record.not_applicable": "No MX record was detected, so SPF does not apply.",
+  "security.spf_record.missing": "The domain receives mail but publishes no SPF record.",
+  "security.spf_record.ok": "An SPF record is published for the domain.",
+  "security.spf_record.remediation": "Add a TXT SPF record beginning with 'v=spf1' to the sending domain.",
+
   "security.xfo.missing": "No clickjacking protection found (neither X-Frame-Options nor CSP frame-ancestors).",
   "security.xfo.weak_value": "X-Frame-Options has an unusual value.",
   "security.xfo.covered_by_csp": "Clickjacking protection is provided via Content-Security-Policy.",

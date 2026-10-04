@@ -6,6 +6,11 @@
   "security.hsts.ok": "HSTS est correctement configuré.",
   "security.hsts.remediation": "Ajoutez l'en-tête 'Strict-Transport-Security: max-age=31536000; includeSubDomains' à vos réponses HTTP.",
 
+  "security.spf_record.not_applicable": "Aucun enregistrement MX détecté : la règle SPF ne s'applique pas.",
+  "security.spf_record.missing": "Le domaine reçoit des courriels mais ne publie aucun enregistrement SPF.",
+  "security.spf_record.ok": "Un enregistrement SPF est publié pour le domaine.",
+  "security.spf_record.remediation": "Ajoutez un enregistrement TXT SPF commençant par 'v=spf1' au domaine d'envoi.",
+
   "security.csp.missing": "Le site n'envoie pas d'en-tête Content-Security-Policy.",
 "security.csp.unsafe_inline": "CSP est présent mais autorise 'unsafe-inline', ce qui réduit fortement sa protection.",
 "security.csp.ok": "Content-Security-Policy est correctement configuré.",
