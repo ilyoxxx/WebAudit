@@ -8,6 +8,8 @@ import { collectDns } from '../collectors/dns';
 import { collectCookies } from '../collectors/cookies';
 import { loadRules, buildReport } from '../engine/runner';
 import type { ScanContext } from '../types';
+import { isValidKey } from './apiKeys';
+import { checkFreeLimit } from './rateLimit';
 
 const app = express();
 const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
@@ -34,10 +36,43 @@ function detectMentionsLegales(html: string): boolean {
   );
 }
 
+const SENSITIVE_PATHS = ['/.env', '/.git/config', '/wp-config.php.bak', '/config.php.bak', '/.DS_Store'];
+
+async function collectExposedFiles(baseUrl: string): Promise<{ path: string; status: number }[]> {
+  const results = await Promise.all(
+    SENSITIVE_PATHS.map(async (p) => {
+      try {
+        const r = await collectHttp(new URL(p, baseUrl).toString());
+        return { path: p, status: r.status };
+      } catch {
+        return { path: p, status: 0 };
+      }
+    }),
+  );
+  return results.filter((f) => f.status === 200);
+}
+
 app.post('/api/scan', async (req, res) => {
   const rawUrl = req.body?.url;
   if (!rawUrl || typeof rawUrl !== 'string') {
     return res.status(400).json({ error: 'Missing "url" in request body' });
+  }
+
+  const apiKey = req.headers['x-api-key'];
+  const ip = req.ip || 'unknown';
+
+  if (apiKey && typeof apiKey === 'string') {
+    if (!isValidKey(apiKey)) {
+      return res.status(401).json({ error: 'invalid_api_key' });
+    }
+  } else {
+    const limit = checkFreeLimit(ip);
+    if (!limit.allowed) {
+      return res.status(429).json({
+        error: 'free_limit_reached',
+        message: 'Limite de 3 scans gratuits/jour atteinte. Contacte-moi pour une clé API illimitée.',
+      });
+    }
   }
 
   const url = normalizeUrl(rawUrl.trim());
@@ -60,6 +95,8 @@ app.post('/api/scan', async (req, res) => {
       robotsTxt = null;
     }
 
+    const exposedFiles = await collectExposedFiles(url);
+
     const ctx: ScanContext = {
       url,
       finalUrl: httpResult.finalUrl,
@@ -75,6 +112,7 @@ app.post('/api/scan', async (req, res) => {
       cookies,
       robotsTxt,
       mentionsLegalesDetected,
+      exposedFiles,
     };
 
     const report = buildReport(url, ctx, rules);

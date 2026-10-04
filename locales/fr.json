@@ -1,49 +1,43 @@
 {
   "engine.rule_crashed": "Cette règle a rencontré une erreur interne pendant l'analyse.",
-
   "seo.robots_txt_present.missing": "Le site ne publie pas de fichier robots.txt.",
   "seo.robots_txt_present.ok": "Un fichier robots.txt est disponible.",
   "seo.robots_txt_present.remediation": "Publiez un fichier robots.txt à la racine du site pour décrire les règles d'accès des robots.",
-
   "security.hsts.missing": "Le site n'envoie pas d'en-tête Strict-Transport-Security (HSTS).",
   "security.hsts.short_max_age": "HSTS est présent mais sa durée (max-age) est trop courte.",
   "security.hsts.ok": "HSTS est correctement configuré.",
   "security.hsts.remediation": "Ajoutez l'en-tête 'Strict-Transport-Security: max-age=31536000; includeSubDomains' à vos réponses HTTP.",
-
   "security.spf_record.not_applicable": "Aucun enregistrement MX détecté : la règle SPF ne s'applique pas.",
   "security.spf_record.missing": "Le domaine reçoit des courriels mais ne publie aucun enregistrement SPF.",
   "security.spf_record.ok": "Un enregistrement SPF est publié pour le domaine.",
   "security.spf_record.remediation": "Ajoutez un enregistrement TXT SPF commençant par 'v=spf1' au domaine d'envoi.",
-
   "security.csp.missing": "Le site n'envoie pas d'en-tête Content-Security-Policy.",
-"security.csp.unsafe_inline": "CSP est présent mais autorise 'unsafe-inline', ce qui réduit fortement sa protection.",
-"security.csp.ok": "Content-Security-Policy est correctement configuré.",
-"security.csp.remediation": "Définissez une CSP stricte, ex: \"default-src 'self'\", et évitez 'unsafe-inline'.",
-
+  "security.csp.unsafe_inline": "CSP est présent mais autorise 'unsafe-inline', ce qui réduit fortement sa protection.",
+  "security.csp.ok": "Content-Security-Policy est correctement configuré.",
+  "security.csp.remediation": "Définissez une CSP stricte, ex: \"default-src 'self'\", et évitez 'unsafe-inline'.",
   "security.xfo.missing": "Aucune protection contre le clickjacking (ni X-Frame-Options, ni frame-ancestors en CSP).",
   "security.xfo.weak_value": "X-Frame-Options a une valeur inhabituelle.",
   "security.xfo.covered_by_csp": "La protection contre le clickjacking est assurée via Content-Security-Policy.",
   "security.xfo.ok": "X-Frame-Options est correctement configuré.",
   "security.xfo.remediation": "Ajoutez 'X-Frame-Options: SAMEORIGIN' ou une directive CSP 'frame-ancestors'.",
-
   "rgpd.cookie_consent.tracking_without_cmp": "Des cookies de mesure d'audience/publicité sont posés sans bandeau de consentement détecté.",
   "rgpd.cookie_consent.cmp_present_needs_manual_check": "Un outil de gestion du consentement est détecté, mais une vérification manuelle du parcours de consentement est recommandée.",
   "rgpd.cookie_consent.no_tracking_detected": "Aucun cookie de tracking non-essentiel détecté avant consentement.",
   "rgpd.cookie_consent.remediation": "Différez le dépôt des cookies non-essentiels jusqu'au consentement explicite de l'utilisateur (voir recommandations CNIL).",
-
   "rgpd.mentions_legales.found": "Une page de mentions légales a été détectée.",
   "rgpd.mentions_legales.missing": "Aucune page de mentions légales détectée.",
   "rgpd.mentions_legales.remediation": "Ajoutez une page 'Mentions légales' accessible depuis le pied de page, conforme à l'article 6 de la LCEN.",
-
   "perf.compression.missing": "Les réponses HTTP ne sont pas compressées.",
   "perf.compression.unrecognized": "Un encodage de compression non standard est utilisé.",
   "perf.compression.ok": "La compression HTTP est activée.",
   "perf.compression.remediation": "Activez la compression gzip ou brotli côté serveur (ex: middleware 'compression' pour Express).",
-
   "seo.meta_description.missing": "La page ne contient pas de balise meta 'description'.",
   "seo.meta_description.too_short": "La meta description est trop courte (moins de 50 caractères).",
   "seo.meta_description.too_long": "La meta description est trop longue (plus de 160 caractères) ; elle sera tronquée dans les résultats de recherche.",
   "seo.meta_description.ok": "La meta description a une longueur adaptée.",
   "seo.meta_description.no_html": "Impossible d'analyser la page : aucun HTML collecté.",
-  "seo.meta_description.remediation": "Ajoutez '<meta name=\"description\" content=\"…\">' dans le <head>, avec un résumé de 50 à 160 caractères qui donne envie de cliquer."
+  "seo.meta_description.remediation": "Ajoutez '<meta name=\"description\" content=\"…\">' dans le <head>, avec un résumé de 50 à 160 caractères qui donne envie de cliquer.",
+  "security.exposed_files.ok": "Aucun fichier sensible exposé détecté.",
+  "security.exposed_files.found": "Des fichiers sensibles sont accessibles publiquement (identifiants, configuration...).",
+  "security.exposed_files.remediation": "Bloquez l'accès public à ces fichiers via la configuration du serveur (nginx/Apache) et supprimez les éventuelles sauvegardes du dossier web public."
 }

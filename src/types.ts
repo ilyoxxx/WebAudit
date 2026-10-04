@@ -8,29 +8,19 @@ export type RuleStatus = 'pass' | 'fail' | 'warn' | 'na';
 
 export interface RuleResult {
   status: RuleStatus;
-  /** Clé i18n définie dans /locales/*.json — jamais de texte en dur ici. */
   messageKey: string;
-  /** Donnée brute observée (ex: valeur du header manquant/erroné). */
   evidence?: string;
-  /** Clé i18n pointant vers la remédiation suggérée. */
   remediationKey?: string;
 }
 
 export interface Rule {
   id: string;
   category: RuleCategory;
-  /** Poids de la règle dans le score global, de 1 (mineur) à 10 (critique). */
   weight: number;
-  /** Lien de référence : MDN, CNIL, RFC... */
   docs: string;
   evaluate(ctx: ScanContext): RuleResult;
 }
 
-/**
- * Contexte passé à chaque règle. Rempli par les collectors avant l'exécution
- * du moteur. Les collectors sont responsables de la robustesse réseau
- * (timeouts, erreurs) ; une règle ne doit jamais throw.
- */
 export interface ScanContext {
   url: string;
   finalUrl: string;
@@ -62,6 +52,10 @@ export interface ScanContext {
   }[];
   robotsTxt: string | null;
   mentionsLegalesDetected: boolean;
+  exposedFiles: {
+    path: string;
+    status: number;
+  }[];
 }
 
 export interface RuleReport extends RuleResult {
