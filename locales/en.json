@@ -1,6 +1,10 @@
 {
   "engine.rule_crashed": "This rule hit an internal error during analysis.",
 
+  "seo.robots_txt_present.missing": "The site does not publish a robots.txt file.",
+  "seo.robots_txt_present.ok": "A robots.txt file is available.",
+  "seo.robots_txt_present.remediation": "Publish a robots.txt file at the site root to describe crawler access rules.",
+
   "security.hsts.missing": "The site does not send a Strict-Transport-Security (HSTS) header.",
   "security.hsts.short_max_age": "HSTS is present but its max-age is too short.",
   "security.hsts.ok": "HSTS is correctly configured.",
