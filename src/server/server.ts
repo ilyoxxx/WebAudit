@@ -1,3 +1,4 @@
+import './polyfills';
 import express from 'express';
 import * as path from 'node:path';
 import * as cheerio from 'cheerio';
