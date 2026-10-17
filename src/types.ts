@@ -52,6 +52,8 @@ export interface ScanContext {
   }[];
   robotsTxt: string | null;
   mentionsLegalesDetected: boolean;
+  mentionsLegalesInconclusive?: boolean;
+  mentionsLegalesEvidence?: string;
   exposedFiles: {
     path: string;
     status: number;

@@ -7,6 +7,7 @@ import { collectHttp } from '../collectors/http';
 import { collectTls } from '../collectors/tls';
 import { collectDns } from '../collectors/dns';
 import { collectCookies } from '../collectors/cookies';
+import { detectLegalNotice } from '../collectors/legal';
 import { loadRules, buildReport } from '../engine/runner';
 import type { ScanContext } from '../types';
 import { isValidKey } from './apiKeys';
@@ -86,7 +87,8 @@ app.post('/api/scan', async (req, res) => {
     ]);
 
     const cookies = collectCookies(httpResult.headers['set-cookie']);
-    const mentionsLegalesDetected = detectMentionsLegales(httpResult.bodyHtml);
+    const legacyLegal = detectMentionsLegales(httpResult.bodyHtml);
+    const legal = await detectLegalNotice(httpResult.finalUrl || url, httpResult.bodyHtml, httpResult.status);
 
     let robotsTxt: string | null = null;
     try {
@@ -112,7 +114,9 @@ app.post('/api/scan', async (req, res) => {
       dns: dnsResult,
       cookies,
       robotsTxt,
-      mentionsLegalesDetected,
+      mentionsLegalesDetected: legal.found || legacyLegal,
+      mentionsLegalesInconclusive: legal.inconclusive,
+      mentionsLegalesEvidence: legal.evidence,
       exposedFiles,
     };
 
