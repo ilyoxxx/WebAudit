@@ -4,7 +4,7 @@ const rule: Rule = {
   id: 'rgpd/mentions-legales',
   category: 'rgpd',
   weight: 6,
-  docs: 'https://www.cnil.fr/fr/les-obligations-des-editeurs-de-site-internet',
+  docs: 'https://entreprendre.service-public.gouv.fr/vosdroits/F37351',
 
   evaluate(ctx: ScanContext): RuleResult {
     if (ctx.mentionsLegalesDetected) {

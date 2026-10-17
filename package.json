@@ -10,7 +10,8 @@
     "build": "tsc -p tsconfig.json",
     "start": "node dist/server/server.js",
     "test": "vitest run",
-    "new:rule": "node scripts/new-rule.js"
+    "new:rule": "node scripts/new-rule.js",
+    "build:legal": "node scripts/build-legal.js"
   },
   "dependencies": {
     "express": "^4.19.2",
