@@ -12,14 +12,17 @@ import { loadRules, buildReport } from '../engine/runner';
 import type { ScanContext } from '../types';
 import { isValidKey } from './apiKeys';
 import { checkFreeLimit } from './rateLimit';
+import { registerAuth } from './auth';
 
 const app = express();
+app.set('trust proxy', 1);
 const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
 const rules = loadRules();
 console.log(`[webaudit] ${rules.length} règle(s) chargée(s): ${rules.map((r) => r.id).join(', ')}`);
 
 app.use(express.json());
+registerAuth(app);
 app.use(express.static(path.join(__dirname, '..', '..', 'public')));
 app.use('/locales', express.static(path.join(__dirname, '..', '..', 'locales')));
 
