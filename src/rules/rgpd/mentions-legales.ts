@@ -11,6 +11,14 @@ const rule: Rule = {
       return {
         status: 'pass',
         messageKey: 'rgpd.mentions_legales.found',
+        ...(ctx.mentionsLegalesEvidence ? { evidence: ctx.mentionsLegalesEvidence } : {}),
+      };
+    }
+
+    if (ctx.mentionsLegalesInconclusive) {
+      return {
+        status: 'na',
+        messageKey: 'rgpd.mentions_legales.inconclusive',
       };
     }
 
@@ -18,6 +26,7 @@ const rule: Rule = {
       status: 'fail',
       messageKey: 'rgpd.mentions_legales.missing',
       remediationKey: 'rgpd.mentions_legales.remediation',
+      ...(ctx.mentionsLegalesEvidence ? { evidence: ctx.mentionsLegalesEvidence } : {}),
     };
   },
 };

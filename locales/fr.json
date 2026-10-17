@@ -25,7 +25,7 @@
   "rgpd.cookie_consent.no_tracking_detected": "Aucun cookie de tracking non-essentiel détecté avant consentement.",
   "rgpd.cookie_consent.remediation": "Différez le dépôt des cookies non-essentiels jusqu'au consentement explicite de l'utilisateur (voir recommandations CNIL).",
   "rgpd.mentions_legales.found": "Une page de mentions légales a été détectée.",
-  "rgpd.mentions_legales.missing": "Aucune page de mentions légales détectée.",
+  "rgpd.mentions_legales.missing": "Aucune mention légale trouvée après exploration de plusieurs pages du site, du sitemap et des chemins courants (/mentions-legales, /legal…).",
   "rgpd.mentions_legales.remediation": "Ajoutez une page 'Mentions légales' accessible depuis le pied de page, conforme à l'article 6 de la LCEN.",
   "perf.compression.missing": "Les réponses HTTP ne sont pas compressées.",
   "perf.compression.unrecognized": "Un encodage de compression non standard est utilisé.",
@@ -39,5 +39,6 @@
   "seo.meta_description.remediation": "Ajoutez '<meta name=\"description\" content=\"…\">' dans le <head>, avec un résumé de 50 à 160 caractères qui donne envie de cliquer.",
   "security.exposed_files.ok": "Aucun fichier sensible exposé détecté.",
   "security.exposed_files.found": "Des fichiers sensibles sont accessibles publiquement (identifiants, configuration...).",
-  "security.exposed_files.remediation": "Bloquez l'accès public à ces fichiers via la configuration du serveur (nginx/Apache) et supprimez les éventuelles sauvegardes du dossier web public."
+  "security.exposed_files.remediation": "Bloquez l'accès public à ces fichiers via la configuration du serveur (nginx/Apache) et supprimez les éventuelles sauvegardes du dossier web public.",
+  "rgpd.mentions_legales.inconclusive": "Analyse non concluante : le site bloque les analyses automatiques ou charge son contenu via JavaScript. Vérifiez manuellement la présence des mentions légales."
 }
