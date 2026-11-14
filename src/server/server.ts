@@ -14,14 +14,12 @@ import { loadRules, buildReport } from '../engine/runner';
 import type { ScanContext } from '../types';
 import { validateKey } from './apiKeys';
 import {
-  FREE_SCANS_PER_DAY,
   acquireSlot,
   badKeyLimiter,
   flushQuota,
   ipKey,
   keyUsageLimiter,
   scanBurstLimiter,
-  takeFreeScan,
   targetLimiter,
 } from './rateLimit';
 import { registerAuth } from './auth';
@@ -187,8 +185,6 @@ app.post('/api/scan', async (req: Request, res: Response) => {
   if (Array.isArray(header)) {
     return res.status(400).json({ error: 'invalid_request', message: 'En-tête x-api-key invalide.' });
   }
-  let remaining: number | null = null;
-
   if (typeof header === 'string' && header.length > 0) {
     if (badKeyLimiter.blocked(net)) {
       return tooMany(res, 'too_many_requests', 'Trop de tentatives, réessaie plus tard.', 900);
@@ -203,20 +199,8 @@ app.post('/api/scan', async (req: Request, res: Response) => {
     if (!usage.allowed) {
       return tooMany(res, 'key_rate_limited', 'Plafond horaire de cette clé atteint.', usage.retryAfterSec);
     }
-  } else {
-    const q = takeFreeScan(ip);
-    if (!q.allowed) {
-      if (q.reason === 'global') {
-        return tooMany(res, 'free_capacity_reached', 'Le service gratuit est saturé aujourd\'hui. Réessaie demain ou utilise une clé API.');
-      }
-      return tooMany(
-        res,
-        'free_limit_reached',
-        `Limite de ${FREE_SCANS_PER_DAY} scans gratuits/jour atteinte. Connecte-toi pour obtenir une clé API.`,
-      );
-    }
-    remaining = q.remaining;
   }
+  // Sans clé : accès libre, sans quota journalier (les limiteurs anti-abus ci-dessous restent actifs).
 
   // 4. On ne laisse pas notre service servir à marteler un tiers.
   const host = target.url.hostname.toLowerCase().replace(/^www\./, '');
@@ -230,8 +214,6 @@ app.post('/api/scan', async (req: Request, res: Response) => {
   if (typeof slot === 'string') {
     return tooMany(res, 'busy', 'Trop d\'analyses en cours, réessaie dans quelques secondes.', 5);
   }
-
-  if (remaining !== null) res.setHeader('X-RateLimit-Remaining', String(remaining));
 
   let timer: NodeJS.Timeout | undefined;
   try {
