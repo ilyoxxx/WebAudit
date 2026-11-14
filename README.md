@@ -73,3 +73,7 @@ Scan HTTP/TLS/DNS/cookies/robots.txt opérationnel. 6 règles de démonstration 
 ## Licence
 
 MIT
+
+## Sécurité & configuration
+
+Variables d'environnement, protections (SSRF, quotas, sessions) et configuration DNS anti-usurpation d'e-mail : voir [SECURITY.md](SECURITY.md).

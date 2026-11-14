@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Politique de confidentialité — WebAudit</title>
+  <link rel="stylesheet" href="/legal.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="/">WebAudit</a>
+    <a href="https://github.com/ilyoxxx/WebAudit" target="_blank" rel="noopener">GitHub</a>
+  </nav>
+  <main>
+    <h1>Politique de confidentialité</h1>
+    <p class="dim">Dernière mise à jour : 17 octobre 2026</p>
+
+    <p>Cette page explique quelles données personnelles WebAudit traite, pourquoi, chez qui elles sont hébergées et comment exercer vos droits, conformément au Règlement général sur la protection des données (RGPD) et à la loi Informatique et Libertés.</p>
+
+    <h2>1. Responsable du traitement</h2>
+    <p>Le responsable du traitement est Ilyes, dit « Ilyox » (Particulier, éditeur non professionnel, dénommé « Le Développeur de cette application »), joignable à l'adresse contact@ilyox.fr.</p>
+
+    <h2>2. Données traitées</h2>
+    <div class="tablewrap">
+    <table>
+      <tr><th>Donnée</th><th>Pourquoi</th><th>Base légale</th><th>Durée</th></tr>
+      <tr><td>Adresse du site à analyser, saisie par vous</td><td>Réaliser l'analyse demandée</td><td>Exécution du service demandé</td><td>Non conservée : le rapport est renvoyé puis n'est pas enregistré dans une base de données</td></tr>
+      <tr><td>Adresse IP</td><td>Limiter à 3 analyses gratuites par jour et prévenir les abus</td><td>Intérêt légitime (sécurité et bon fonctionnement du service)</td><td>Compteur en mémoire pendant 24 heures au plus, effacé à chaque redémarrage du serveur. L'hébergeur peut tenir des journaux techniques selon sa propre politique</td></tr>
+      <tr><td>Identifiant numérique GitHub</td><td>Rattacher vos clés API à votre compte et limiter leur nombre</td><td>Exécution du service (compte et clés API)</td><td>Jusqu'à la suppression de toutes vos clés, ou sur demande</td></tr>
+      <tr><td>Nom d'utilisateur GitHub</td><td>Afficher que vous êtes connecté</td><td>Exécution du service</td><td>Uniquement dans le cookie de session (7 jours), pas dans une base de données</td></tr>
+      <tr><td>Clés API : nom donné, début de la clé, date de création, empreinte cryptographique (SHA-256)</td><td>Gérer et vérifier vos clés</td><td>Exécution du service</td><td>Jusqu'à la suppression de la clé</td></tr>
+    </table>
+    </div>
+    <p>La clé API complète n'est affichée qu'une seule fois, à sa création. Nous ne conservons que son empreinte : nous ne pouvons pas la retrouver.</p>
+
+    <h2>3. Ce que nous ne faisons pas</h2>
+    <ul>
+      <li>Nous ne demandons à GitHub aucun accès à vos dépôts ni à votre adresse e-mail.</li>
+      <li>Nous n'affichons aucune publicité et ne vendons ni ne louons aucune donnée.</li>
+      <li>Nous n'utilisons aucun outil de mesure d'audience, aucun traceur publicitaire ni aucune police ou ressource hébergée chez un tiers : les pages sont servies entièrement depuis notre serveur.</li>
+      <li>Nous ne faisons aucun profilage ni aucune décision automatisée vous concernant.</li>
+    </ul>
+    <p>Les sites que vous analysez reçoivent des requêtes envoyées depuis les serveurs de WebAudit. Votre adresse IP ne leur est pas transmise.</p>
+
+    <h2>4. Cookies</h2>
+    <div class="tablewrap">
+    <table>
+      <tr><th>Cookie</th><th>Rôle</th><th>Durée</th></tr>
+      <tr><td><code>wa_session</code></td><td>Maintenir votre connexion GitHub (signé, inaccessible au JavaScript, envoyé uniquement à ce site)</td><td>7 jours</td></tr>
+      <tr><td><code>wa_state</code></td><td>Sécuriser la connexion GitHub contre les requêtes forgées</td><td>10 minutes</td></tr>
+    </table>
+    </div>
+    <p>Ces deux cookies sont strictement nécessaires à la fourniture du service de connexion que vous demandez. Ils sont exemptés de consentement : c'est pourquoi aucun bandeau de cookies n'est affiché. Ils ne sont déposés que si vous cliquez sur « Se connecter avec GitHub ».</p>
+
+    <h2>5. Destinataires et sous-traitants</h2>
+    <ul>
+      <li><strong>Railway Corporation</strong> (États-Unis) : hébergement et exécution du service. Elle agit comme sous-traitante. Voir sa <a href="https://railway.com/legal/privacy" target="_blank" rel="noopener">politique de confidentialité</a> et son <a href="https://railway.com/legal/dpa" target="_blank" rel="noopener">accord de traitement des données</a>.</li>
+      <li><strong>GitHub, Inc.</strong> (filiale de Microsoft, États-Unis) : authentification. Quand vous cliquez sur « Se connecter avec GitHub », vous quittez ce site pour github.com, dont la <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">déclaration de confidentialité</a> s'applique à cette étape.</li>
+    </ul>
+    <p>Aucune autre personne n'a accès à vos données, sauf obligation légale ou demande d'une autorité compétente.</p>
+
+    <h2>6. Transferts de données hors de l'Union européenne</h2>
+    <p>Le site est hébergé par Railway Corporation, société américaine ; l'hébergement est situé aux États-Unis. Vos données sont donc traitées en dehors de l'Union européenne. Selon sa politique de confidentialité publiée, Railway adhère au cadre de protection des données UE–États-Unis (Data Privacy Framework) et propose un accord de traitement des données reprenant des clauses contractuelles. Vous pouvez vérifier ces engagements sur les pages de Railway indiquées ci-dessus et sur <a href="https://www.dataprivacyframework.gov/" target="_blank" rel="noopener">dataprivacyframework.gov</a>.</p>
+    <div class="note">Comme toute entreprise établie aux États-Unis, l'hébergeur peut être tenu de répondre à des demandes légales d'autorités américaines. Si cela vous pose problème, n'utilisez pas la connexion GitHub : l'analyse gratuite sans compte ne traite que votre adresse IP, brièvement et en mémoire.</div>
+
+    <h2>7. Vos droits</h2>
+    <p>Vous disposez des droits d'accès, de rectification, d'effacement, de limitation, d'opposition et de portabilité sur vos données. Vous pouvez supprimer vous-même vos clés API depuis la page d'accueil, une fois connecté. Pour tout autre droit ou pour supprimer l'ensemble de vos données, écrivez à contact@ilyox.fr : nous répondons dans un délai d'un mois au plus.</p>
+    <p>Si vous estimez, après nous avoir contactés, que vos droits ne sont pas respectés, vous pouvez déposer une réclamation auprès de la CNIL : <a href="https://www.cnil.fr/fr/plaintes" target="_blank" rel="noopener">cnil.fr/fr/plaintes</a> (CNIL, 3 place de Fontenoy, TSA 80715, 75334 Paris cedex 07).</p>
+
+    <h2>8. Sécurité</h2>
+    <p>Les échanges avec le site sont chiffrés (HTTPS). Les clés API sont stockées sous forme d'empreinte cryptographique, jamais en clair. Le cookie de session est signé et inaccessible au JavaScript. Aucune méthode n'étant infaillible, nous ne pouvons garantir une sécurité absolue : supprimez immédiatement toute clé que vous pensez compromise.</p>
+
+    <h2>9. Mineurs</h2>
+    <p>Le service n'est pas destiné aux personnes de moins de 15 ans, et GitHub impose lui-même un âge minimal pour ses comptes.</p>
+
+    <h2>10. Modifications</h2>
+    <p>Cette politique peut évoluer, par exemple si un nouveau service est ajouté. La date de dernière mise à jour figure en haut de la page. Le code source, y compris la gestion des données, est consultable sur <a href="https://github.com/ilyoxxx/WebAudit" target="_blank" rel="noopener">GitHub</a>.</p>
+
+  </main>
+  <footer class="foot">
+    <a href="/mentions-legales.html">Mentions légales</a>
+    <a href="/confidentialite.html">Politique de confidentialité</a>
+    <a href="/cgu.html">Conditions générales d'utilisation</a>
+    <a href="/docs.html">Documentation API</a>
+  </footer>
+</body>
+</html>
