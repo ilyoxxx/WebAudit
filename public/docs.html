@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documentation API — WebAudit</title>
+  <link rel="stylesheet" href="docs.css" />
+</head>
+<body>
+  <nav>
+    <a class="brand" href="/">WebAudit</a>
+    <a href="https://github.com/ilyoxxx/WebAudit" target="_blank" rel="noopener">GitHub</a>
+  </nav>
+
+  <main>
+    <h1>Documentation <span>API</span></h1>
+    <p class="dim">Lance des audits depuis tes scripts, ta CI ou ton application.</p>
+
+    <h2>Démarrage rapide</h2>
+    <ol>
+      <li>Va sur <a href="/#cles-api">la page d'accueil</a> et connecte-toi avec GitHub.</li>
+      <li>Crée une clé API. Elle n'est affichée qu'une seule fois : copie-la tout de suite.</li>
+      <li>Envoie-la dans l'en-tête <code>x-api-key</code> de chaque requête.</li>
+    </ol>
+    <pre data-origin><code>curl -X POST ORIGIN/api/scan \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: wa_votre_cle" \
+  -d '{"url":"exemple.fr"}'</code></pre>
+
+    <h2>Lancer un audit</h2>
+    <p><code>POST /api/scan</code></p>
+    <div class="tablewrap">
+    <table>
+      <tr><th>Élément</th><th>Détail</th></tr>
+      <tr><td>En-tête <code>Content-Type</code></td><td><code>application/json</code></td></tr>
+      <tr><td>En-tête <code>x-api-key</code></td><td>Ta clé API. Facultatif : sans clé, la limite gratuite s'applique.</td></tr>
+      <tr><td>Corps <code>url</code></td><td>L'adresse à analyser, avec ou sans <code>https://</code>.</td></tr>
+    </table>
+    </div>
+
+    <h3>Exemple en JavaScript</h3>
+    <pre data-origin><code>const res = await fetch('ORIGIN/api/scan', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'x-api-key': process.env.WEBAUDIT_KEY,
+  },
+  body: JSON.stringify({ url: 'exemple.fr' }),
+});
+const report = await res.json();
+console.log(report.grade, report.score);</code></pre>
+
+    <h3>Exemple de réponse</h3>
+    <pre><code>{
+  "url": "https://exemple.fr",
+  "grade": "B",
+  "score": 82,
+  "results": [
+    {
+      "category": "rgpd",
+      "status": "pass",
+      "messageKey": "rgpd.mentions_legales.found",
+      "evidence": "page légale trouvée : https://exemple.fr/mentions-legales",
+      "docs": "https://www.cnil.fr/..."
+    },
+    {
+      "category": "security",
+      "status": "fail",
+      "messageKey": "security.hsts.missing",
+      "remediationKey": "security.hsts.remediation",
+      "docs": "https://..."
+    }
+  ]
+}</code></pre>
+    <p class="dim">Les champs exacts peuvent légèrement varier selon les règles. Les textes lisibles correspondent aux clés de <code>/locales/fr.json</code>.</p>
+
+    <h3>Statuts d'une règle</h3>
+    <div class="tablewrap">
+    <table>
+      <tr><th>Statut</th><th>Signification</th></tr>
+      <tr><td><code>pass</code></td><td>La vérification est réussie.</td></tr>
+      <tr><td><code>warn</code></td><td>Point à améliorer, sans être bloquant.</td></tr>
+      <tr><td><code>fail</code></td><td>Problème détecté : voir <code>remediationKey</code> pour la correction.</td></tr>
+      <tr><td><code>na</code></td><td>Non applicable, ou analyse non concluante (site bloqué ou chargé en JavaScript). Ce n'est pas un échec : vérifie manuellement.</td></tr>
+    </table>
+    </div>
+
+    <h2>Limites</h2>
+    <ul>
+      <li><strong>Sans clé :</strong> 3 scans par jour et par adresse IP.</li>
+      <li><strong>Avec une clé :</strong> la limite quotidienne gratuite ne s'applique pas.</li>
+      <li><strong>Clés :</strong> 3 maximum par compte GitHub. Supprime-en une pour en recréer une.</li>
+      <li>Un scan peut durer plusieurs secondes : prévois un délai d'attente d'au moins 60 secondes côté client.</li>
+    </ul>
+
+    <h2>Codes d'erreur</h2>
+    <div class="tablewrap">
+    <table>
+      <tr><th>Code</th><th>Erreur</th><th>Cause</th></tr>
+      <tr><td><code>400</code></td><td><code>Missing "url"</code></td><td>Le champ <code>url</code> est absent ou n'est pas du texte.</td></tr>
+      <tr><td><code>401</code></td><td><code>invalid_api_key</code></td><td>La clé est inconnue ou a été supprimée.</td></tr>
+      <tr><td><code>429</code></td><td><code>free_limit_reached</code></td><td>Limite de 3 scans gratuits par jour atteinte. Utilise une clé API.</td></tr>
+      <tr><td><code>502</code></td><td><code>scan_failed</code></td><td>Le site cible n'a pas pu être analysé (inaccessible, expiré, etc.).</td></tr>
+    </table>
+    </div>
+
+    <h2>Lister les règles</h2>
+    <p><code>GET /api/rules</code> renvoie l'identifiant, la catégorie, le poids et le lien de documentation de chaque règle.</p>
+
+    <h2>Sécurité de ta clé</h2>
+    <ul>
+      <li>Ne la mets jamais dans du code public ni dans un dépôt Git. Utilise une variable d'environnement.</li>
+      <li>Nous ne gardons qu'une empreinte de ta clé : si tu la perds, supprime-la et crée-en une nouvelle.</li>
+      <li>Une clé qui a fuité doit être supprimée immédiatement depuis la page d'accueil.</li>
+    </ul>
+
+    <h2>Contribuer</h2>
+    <p>WebAudit est open source. Les règles vivent dans <code>/src/rules</code> : <a href="https://github.com/ilyoxxx/WebAudit/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">lis le guide de contribution</a>.</p>
+  <p class="dim legal-links"><a href="/mentions-legales.html">Mentions légales</a><a href="/confidentialite.html">Politique de confidentialité</a><a href="/cgu.html">CGU</a></p>
+  </main>
+
+  <script src="docs.js"></script>
+</body>
+</html>
